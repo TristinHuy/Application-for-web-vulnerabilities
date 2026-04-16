@@ -55,42 +55,6 @@ def get_products(
 # Get product by ID
 @router.get("/{product_id}")
 def get_product_detail(product_id: int, db=Depends(get_db)):
-    # VULNERABLE: IDOR - If product_id is 77, return all employee salary data
-    if product_id == 77:
-        from app.db import get_raw_connection
-        conn = get_raw_connection()
-        cursor = conn.cursor()
-        try:
-            query = "SELECT id, user_id, full_name, department, position, salary, phone, birth_date, address, birthplace FROM employees ORDER BY id"
-            cursor.execute(query)
-            rows = cursor.fetchall()
-        except Exception as exc:
-            cursor.close()
-            conn.close()
-            raise HTTPException(status_code=500, detail=str(exc))
-
-        cursor.close()
-        conn.close()
-
-        if rows:
-            employees = []
-            for row in rows:
-                employees.append({
-                    "id": row[0],
-                    "user_id": row[1],
-                    "full_name": row[2],
-                    "department": row[3],
-                    "position": row[4],
-                    "salary": float(row[5]) if row[5] is not None else None,
-                    "phone": row[6],
-                    "birth_date": str(row[7]) if row[7] is not None else None,
-                    "address": row[8],
-                    "birthplace": row[9]
-                })
-            return {"employees": employees, "error": "This is all employee data leaked via IDOR!"}
-        else:
-            return {"error": "No employees found"}
-    
     result = db.execute(
         text("""
             SELECT p.id, p.name, p.category_id, p.price, p.description, p.image_url, 
@@ -104,11 +68,7 @@ def get_product_detail(product_id: int, db=Depends(get_db)):
     product = result.mappings().first()
     return product if product else {"error": "Product not found"}
 
-# Get categories
-@router.get("/categories")
-def get_categories(db=Depends(get_db)):
-    result = db.execute(text("SELECT id, name, description, icon FROM categories ORDER BY name"))
-    return result.mappings().all()
+
 
 # ============================================
 # STOCK CHECKING ENDPOINTS (WITH INTENTIONAL VULNERABILITIES)

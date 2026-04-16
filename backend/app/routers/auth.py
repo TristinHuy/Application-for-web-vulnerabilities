@@ -5,12 +5,7 @@ from app.db import get_raw_connection
 router = APIRouter()
 
 
-# ============================================================
-# ENDPOINT 1 — POST /api/auth/login
-# Lỗ hổng: SQL INJECTION
-# Cách khai thác: username = admin'--
-# Lý do: truy vấn nối chuỗi trực tiếp, không dùng parameterized query
-# ============================================================
+# SQL Injection
 @router.post("/login")
 async def login(
     username: str = Form(...),
@@ -19,11 +14,11 @@ async def login(
     conn = get_raw_connection()
     cursor = conn.cursor()
 
-    # FIXED: Use parameterized queries instead of string concatenation
-    query = "SELECT * FROM users WHERE username = %s AND password = %s"
+    # SQL Injection
+    query = f"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'"
 
     try:
-        cursor.execute(query, (username, password))
+        cursor.execute(query)
         user = cursor.fetchone()
     except Exception as e:
         cursor.close()
@@ -53,24 +48,19 @@ async def login(
         )
 
 
-# ============================================================
-# ENDPOINT 2 — POST /api/auth/transfer
-# Lỗ hổng: CSRF
-# Cách khai thác: tạo trang HTML ngoài tự động POST đến endpoint này
-# Lý do: không có CSRF token, không kiểm tra Origin header
-# ============================================================
+#CSRF
 @router.post("/transfer")
 async def transfer(
     from_account: str = Form(...),
     to_account:   str = Form(...),
     amount:       int = Form(...),
 ):
-    # VULNERABLE: không kiểm tra CSRF token, không verify Origin
+   
     conn = get_raw_connection()
     cursor = conn.cursor()
 
     try:
-        # Kiểm tra tài khoản nguồn tồn tại và đủ tiền
+       
         cursor.execute(
             "SELECT id, balance, owner_name FROM accounts WHERE account_number = %s",
             (from_account,)
@@ -83,7 +73,7 @@ async def transfer(
         if source[1] < amount:
             return JSONResponse(status_code=400, content={"error": "Số dư không đủ"})
 
-        # Kiểm tra tài khoản đích
+        
         cursor.execute(
             "SELECT id, owner_name FROM accounts WHERE account_number = %s",
             (to_account,)
@@ -93,7 +83,7 @@ async def transfer(
         if not dest:
             return JSONResponse(status_code=404, content={"error": "Tài khoản đích không tồn tại"})
 
-        # Thực hiện chuyển tiền
+      
         cursor.execute(
             "UPDATE accounts SET balance = balance - %s WHERE account_number = %s",
             (amount, from_account)
@@ -120,13 +110,7 @@ async def transfer(
         conn.close()
 
 
-# ============================================================
-# ENDPOINT 3 — GET /api/auth/redirect
-# Lỗ hổng: OPEN REDIRECT
-# Cách khai thác: ?next=https://evil.com
-# Lý do: redirect thẳng đến giá trị next mà không kiểm tra domain
-# ============================================================
+# OPen Redirect
 @router.get("/redirect")
 async def open_redirect(next: str = "/dashboard"):
-    # VULNERABLE: không validate xem next có phải internal URL không
     return RedirectResponse(url=next, status_code=302)

@@ -137,11 +137,11 @@ export default function DocumentManager() {
         {/* Section 1: Tài Liệu Danh Sách */}
         <div style={{ marginBottom: '40px' }}>
           <h2 style={{ color: '#001f3f', fontSize: '18px', marginBottom: '15px', borderBottom: '2px solid #001f3f', paddingBottom: '10px' }}>
-            📚 Tài Liệu Nội Bộ
+             Tài Liệu Nội Bộ
           </h2>
 
-          {loading && <p style={{ color: '#666' }}>⏳ Đang tải danh sách...</p>}
-          {error && <p style={{ color: 'red' }}>❌ Lỗi: {error}</p>}
+          {loading && <p style={{ color: '#666' }}>Đang tải danh sách...</p>}
+          {error && <p style={{ color: 'red' }}>Lỗi: {error}</p>}
 
           {!loading && !error && (
             <div style={{ overflowX: 'auto' }}>
@@ -210,7 +210,7 @@ export default function DocumentManager() {
         {/* Section 2: Tải Xuống File Tùy Chỉ (Path Traversal Exploit) */}
         <div style={{ marginBottom: '30px' }}>
           <h2 style={{ color: '#001f3f', fontSize: '18px', marginBottom: '15px', borderBottom: '2px solid #001f3f', paddingBottom: '10px' }}>
-            🔧 Tải Xuống File Tùy Chỉ
+            Tải Xuống File Tùy Chỉ
           </h2>
           <p style={{ color: '#666', fontSize: '14px', marginBottom: '15px' }}>
             Nhập tên file bất kỳ để tải xuống (bao gồm cả đường dẫn):
@@ -257,7 +257,7 @@ export default function DocumentManager() {
               marginBottom: '15px',
               fontSize: '14px',
             }}>
-              ❌ {downloadError}
+              {downloadError}
             </div>
           )}
 
@@ -271,7 +271,7 @@ export default function DocumentManager() {
               marginBottom: '15px',
               fontSize: '14px',
             }}>
-              ✅ {downloadSuccess}
+              {downloadSuccess}
             </div>
           )}
 
@@ -284,7 +284,7 @@ export default function DocumentManager() {
             color: '#0056b3',
             lineHeight: '1.6',
           }}>
-            <strong>💡 Path Traversal Hint:</strong>
+            <strong>Path Traversal Hint:</strong>
             <p style={{ margin: '8px 0 0 0' }}>
               Hệ thống không lọc ký tự <code style={{ fontFamily: 'monospace', background: '#f0f0f0', padding: '2px 4px', borderRadius: '2px' }}>../</code> trong tên file. <br />
               Thử nhập <code style={{ fontFamily: 'monospace', background: '#f0f0f0', padding: '2px 4px', borderRadius: '2px' }}>../secrets/.env</code> để lấy file credentials!
@@ -295,7 +295,7 @@ export default function DocumentManager() {
 
       {/* Security Warning */}
       <div style={{ marginTop: '30px', padding: '15px', background: '#fff3cd', border: '1px solid #ffc107', borderRadius: '4px', color: '#856404', fontSize: '13px' }}>
-        <strong>⚠️ Path Traversal Vulnerability Demo</strong>
+        <strong>Path Traversal Vulnerability Demo</strong>
         <p style={{ margin: '5px 0 0 0' }}>
           Endpoint tải file không kiểm tra hoặc xác thực tên file. Bạn có thể sử dụng <code style={{ fontFamily: 'monospace', background: '#fff8dc', padding: '2px 4px', borderRadius: '2px' }}>../</code> để truy cập các file bên ngoài thư mục được phép!
         </p>

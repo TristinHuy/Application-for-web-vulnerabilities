@@ -28,7 +28,6 @@ const ProductDetail = () => {
     fetchReviews();
   }, [productId]);
 
-  // ĐÃ TRẢ LẠI CODE LẤY SẢN PHẨM GỐC CỦA NHÓM ÔNG (ĐẢM BẢO KHÔNG BỊ "NOT FOUND")
   const fetchProduct = async () => {
     try {
       const response = await fetch(`/api/products/${productId}`);
@@ -121,7 +120,7 @@ const ProductDetail = () => {
           </Link>
           
           <div className="bg-red-50 border-2 border-red-500 rounded-xl p-6 mb-6">
-            <h1 className="text-2xl font-bold text-red-700 mb-2">⚠️ IDOR VULNERABILITY DETECTED</h1>
+            <h1 className="text-2xl font-bold text-red-700 mb-2">IDOR VULNERABILITY DETECTED</h1>
             <p className="text-red-600">Leaked Employee Salary Data - 10 Nhân viên</p>
           </div>
 
@@ -216,7 +215,7 @@ const ProductDetail = () => {
               
               <div className="flex items-center gap-3 mt-4">
                 <div className="flex items-center gap-1">
-                  <span className="text-2xl">⭐ {product.rating.toFixed(1)}</span>
+                  <span className="text-2xl">{product.rating.toFixed(1)}</span>
                   <span className="text-gray-500">({product.rating_count} reviews)</span>
                 </div>
               </div>
@@ -266,7 +265,7 @@ const ProductDetail = () => {
                   disabled={product.availability_status === 'Out of Stock'}
                   className="flex-1 px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition disabled:bg-gray-400 disabled:cursor-not-allowed"
                 >
-                  🛒 Add to Cart
+                  Add to Cart
                 </button>
                 <button
                   onClick={() => setInWishlist(!inWishlist)}
@@ -276,7 +275,7 @@ const ProductDetail = () => {
                       : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                   }`}
                 >
-                  {inWishlist ? '❤️ In Wishlist' : '🤍 Add to Wishlist'}
+                  {inWishlist ? 'In Wishlist' : 'Add to Wishlist'}
                 </button>
               </div>
 
@@ -284,7 +283,7 @@ const ProductDetail = () => {
                 onClick={() => setShowStockChecker(true)}
                 className="w-full px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition"
               >
-                📊 Check Regional Stock
+                Check Regional Stock
               </button>
             </div>
           </div>
@@ -320,11 +319,11 @@ const ProductDetail = () => {
                   onChange={(e) => setReviewForm({...reviewForm, rating: parseInt(e.target.value)})}
                   className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
-                  <option value={5}>⭐⭐⭐⭐⭐ Excellent</option>
-                  <option value={4}>⭐⭐⭐⭐ Good</option>
-                  <option value={3}>⭐⭐⭐ Average</option>
-                  <option value={2}>⭐⭐ Poor</option>
-                  <option value={1}>⭐ Very Poor</option>
+                  <option value={5}>Excellent (5/5)</option>
+                  <option value={4}>Good (4/5)</option>
+                  <option value={3}>Average (3/5)</option>
+                  <option value={2}>Poor (2/5)</option>
+                  <option value={1}>Very Poor (1/5)</option>
                 </select>
               </div>
 
@@ -336,7 +335,7 @@ const ProductDetail = () => {
               </button>
 
               <p className="text-xs text-blue-700 bg-blue-50 p-3 rounded">
-                💡 Note: Reviews are vulnerable to Stored XSS for security testing purposes. Do not post sensitive data.
+               Note: Reviews are vulnerable to Stored XSS for security testing purposes. Do not post sensitive data.
               </p>
             </div>
           </div>
@@ -350,7 +349,7 @@ const ProductDetail = () => {
                   <div className="flex justify-between items-start mb-2">
                     <div>
                       <p className="font-semibold text-gray-800">{review.author}</p>
-                      <p className="text-sm text-gray-500">Rating: {'⭐'.repeat(review.rating)}</p>
+                      <p className="text-sm text-gray-500">Rating: {review.rating}/5</p>
                     </div>
                     <div className="flex items-center gap-2">
                       <p className="text-xs text-gray-400">{new Date(review.created_at).toLocaleDateString()}</p>

@@ -37,6 +37,8 @@ const QuickViewModal = ({ product, onClose }) => {
     }
   };
 
+// ... (giữ nguyên phần logic phía trên)
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-xl max-w-2xl w-full shadow-2xl">
@@ -44,9 +46,9 @@ const QuickViewModal = ({ product, onClose }) => {
           <h2 className="text-2xl font-bold text-gray-800">Quick View</h2>
           <button
             onClick={onClose}
-            className="text-gray-500 hover:text-gray-700 text-2xl"
+            className="text-gray-500 hover:text-gray-700 text-sm font-bold border px-2 py-1 rounded"
           >
-            ✕
+            CLOSE
           </button>
         </div>
 
@@ -68,9 +70,9 @@ const QuickViewModal = ({ product, onClose }) => {
                 <h3 className="text-2xl font-bold text-gray-800">{product.name}</h3>
               </div>
 
-              {/* Rating */}
+              {/* Rating - Đã xóa ngôi sao */}
               <div className="flex items-center gap-2">
-                <div className="text-lg">⭐ {product.rating.toFixed(1)}</div>
+                <div className="text-lg font-bold">Rating: {product.rating.toFixed(1)}</div>
                 <span className="text-gray-500">({product.rating_count} reviews)</span>
               </div>
 
@@ -94,9 +96,9 @@ const QuickViewModal = ({ product, onClose }) => {
                 <p className="text-gray-700">{product.description}</p>
               </div>
 
-              {/* Region Selector - Switch Bar */}
+              {/* Region Selector - Đã xóa icon map */}
               <div className="space-y-2">
-                <label className="text-sm font-semibold text-gray-700">📍 Select Region & Availability</label>
+                <label className="text-sm font-semibold text-gray-700">Select Region & Availability</label>
                 <div className="flex flex-wrap gap-2">
                   {regions.map(region => (
                     <button
@@ -125,33 +127,33 @@ const QuickViewModal = ({ product, onClose }) => {
                 </div>
               )}
 
-              {/* Quantity Selector */}
+              {/* Quantity Selector - Giữ dấu +/- vì nó là chức năng, hoặc thay bằng text */}
               <div className="flex items-center gap-4">
                 <label className="text-gray-700 font-semibold">Quantity:</label>
                 <div className="flex items-center border border-gray-300 rounded-lg">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="px-3 py-2 text-gray-600 hover:bg-gray-100"
+                    className="px-3 py-1 text-gray-600 hover:bg-gray-100"
                   >
-                    −
+                    LESS
                   </button>
-                  <span className="px-4 py-2 font-semibold">{quantity}</span>
+                  <span className="px-4 py-2 font-semibold border-x">{quantity}</span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
-                    className="px-3 py-2 text-gray-600 hover:bg-gray-100"
+                    className="px-3 py-1 text-gray-600 hover:bg-gray-100"
                   >
-                    +
+                    MORE
                   </button>
                 </div>
               </div>
 
-              {/* Add to Cart Button */}
+              {/* Add to Cart Button - Đã xóa xe đẩy */}
               <button
                 onClick={addToCart}
                 disabled={product.availability_status === 'Out of Stock'}
                 className="w-full px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition disabled:bg-gray-400 disabled:cursor-not-allowed"
               >
-                {product.availability_status === 'Out of Stock' ? 'Out of Stock' : '🛒 Add to Cart'}
+                {product.availability_status === 'Out of Stock' ? 'OUT OF STOCK' : 'ADD TO CART'}
               </button>
             </div>
           </div>

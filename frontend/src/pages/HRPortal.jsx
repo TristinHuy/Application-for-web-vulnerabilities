@@ -121,7 +121,7 @@ export default function HRPortal() {
         {/* Section 1: Xem Hồ Sơ Theo ID */}
         <div style={{ marginBottom: '40px' }}>
           <h2 style={{ color: '#001f3f', fontSize: '18px', marginBottom: '15px', borderBottom: '2px solid #001f3f', paddingBottom: '10px' }}>
-            🔍 Xem Hồ Sơ Nhân Viên Theo ID
+            Xem Hồ Sơ Nhân Viên Theo ID
           </h2>
           <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
             <input
@@ -155,7 +155,7 @@ export default function HRPortal() {
 
           {fetchError && (
             <div style={{ padding: '10px 15px', background: '#f8d7da', color: '#721c24', border: '1px solid #f5c6cb', borderRadius: '4px', marginBottom: '15px' }}>
-              ⚠️ {fetchError}
+              {fetchError}
             </div>
           )}
 
@@ -181,7 +181,7 @@ export default function HRPortal() {
                     <td style={{ padding: '8px' }}>{selectedEmployee.position}</td>
                   </tr>
                   <tr style={{ borderBottom: '1px solid #eee', background: '#fff3cd' }}>
-                    <td style={{ padding: '8px', fontWeight: '600', color: '#856404' }}>💰 Lương (tháng):</td>
+                    <td style={{ padding: '8px', fontWeight: '600', color: '#856404' }}>Lương (tháng):</td>
                     <td style={{ padding: '8px', fontWeight: 'bold', color: '#d39e00' }}>
                       {selectedEmployee.salary ? `${selectedEmployee.salary.toLocaleString('vi-VN')} VNĐ` : 'N/A'}
                     </td>
@@ -201,7 +201,7 @@ export default function HRPortal() {
                 </tbody>
               </table>
               <div style={{ marginTop: '15px', padding: '10px', background: '#e7f3ff', border: '1px solid #b3d9ff', borderRadius: '4px', fontSize: '12px', color: '#0056b3' }}>
-                💡 <strong>Hint:</strong> Thử nhập ID khác nhau (1, 2, 3...) để xem lương của các nhân viên khác mà không cần xác thực quyền!
+                 <strong>Hint:</strong> Thử nhập ID khác nhau (1, 2, 3...) để xem lương của các nhân viên khác mà không cần xác thực quyền!
               </div>
             </div>
           )}
@@ -210,11 +210,11 @@ export default function HRPortal() {
         {/* Section 2: Danh Sách Nhân Viên (Read-Only) */}
         <div>
           <h2 style={{ color: '#001f3f', fontSize: '18px', marginBottom: '15px', borderBottom: '2px solid #001f3f', paddingBottom: '10px' }}>
-            📋 Danh Sách Nhân Viên
+             Danh Sách Nhân Viên
           </h2>
 
-          {loading && <p style={{ color: '#666' }}>⏳ Đang tải danh sách...</p>}
-          {error && <p style={{ color: 'red' }}>❌ Lỗi: {error}</p>}
+          {loading && <p style={{ color: '#666' }}>Đang tải danh sách...</p>}
+          {error && <p style={{ color: 'red' }}>Lỗi: {error}</p>}
 
           {!loading && !error && (
             <div style={{ overflowX: 'auto' }}>
@@ -247,7 +247,7 @@ export default function HRPortal() {
 
       {/* Security Warning */}
       <div style={{ marginTop: '30px', padding: '15px', background: '#fff3cd', border: '1px solid #ffc107', borderRadius: '4px', color: '#856404', fontSize: '13px' }}>
-        <strong>⚠️ IDOR Vulnerability Demo</strong>
+        <strong>IDOR Vulnerability Demo</strong>
         <p style={{ margin: '5px 0 0 0' }}>
           Tính năng "Xem Hồ Sơ Theo ID" không kiểm tra xem người dùng hiện tại có được phép xem ID đó không. Bạn có thể xem lương của bất kỳ nhân viên nào chỉ bằng cách nhập ID của họ!
         </p>

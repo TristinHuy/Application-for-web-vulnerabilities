@@ -90,7 +90,7 @@ export default function ITToolsPage() {
               fontWeight: activeTab === 'webhook' ? '700' : '500',
             }}
           >
-            🔗 Webhook Tester
+            Webhook Tester
           </button>
           <button
             onClick={() => setActiveTab('network')}
@@ -105,7 +105,7 @@ export default function ITToolsPage() {
               fontWeight: activeTab === 'network' ? '700' : '500',
             }}
           >
-            🌐 Network Diagnostics
+            Network Diagnostics
           </button>
           <button
             onClick={() => setActiveTab('report')}
@@ -120,7 +120,7 @@ export default function ITToolsPage() {
               fontWeight: activeTab === 'report' ? '700' : '500',
             }}
           >
-            📊 Report Generator
+            Report Generator
           </button>
         </div>
 
@@ -130,7 +130,7 @@ export default function ITToolsPage() {
       </div>
 
       <div style={{ marginTop: '30px', padding: '15px', background: '#fff3cd', border: '1px solid #ffc107', borderRadius: '4px', color: '#856404' }}>
-        <strong>⚠️ Security Notice</strong>
+        <strong>Security Notice</strong>
         <p style={{ margin: '5px 0 0 0', fontSize: '13px' }}>
           These tools are for authorized security testing and IT administration only. Unauthorized use of these tools on systems you don't own or have permission to test is illegal. Use responsibly and only on systems within your organization's scope.
         </p>

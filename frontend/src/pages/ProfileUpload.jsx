@@ -134,7 +134,7 @@ export default function ProfileUpload() {
       <div style={{ background: 'white', borderRadius: '8px', padding: '25px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)', maxWidth: '600px' }}>
         
         <h2 style={{ color: '#001f3f', fontSize: '18px', marginBottom: '20px', borderBottom: '2px solid #001f3f', paddingBottom: '10px' }}>
-          📸 Upload Ảnh Đại Diện
+          Upload Ảnh Đại Diện
         </h2>
 
         <p style={{ color: '#666', fontSize: '14px', marginBottom: '20px', lineHeight: '1.6' }}>
@@ -178,7 +178,7 @@ export default function ProfileUpload() {
             onChange={handleFileChange}
             style={{ display: 'none' }}
           />
-          <div style={{ fontSize: '48px', marginBottom: '15px' }}>📁</div>
+          <div style={{ fontSize: '48px', marginBottom: '15px' }}>FILE ICON</div>
           <p style={{ fontSize: '16px', fontWeight: '600', color: '#333', margin: '0 0 8px 0' }}>
             Nhấp để chọn hoặc kéo file vào đây
           </p>
@@ -202,7 +202,7 @@ export default function ProfileUpload() {
             alignItems: 'center',
           }}>
             <div>
-              <strong>📄 File Selected:</strong> <code style={{ fontFamily: 'monospace', background: '#fff', padding: '2px 6px', borderRadius: '3px' }}>{fileName}</code>
+              <strong>File Selected:</strong> <code style={{ fontFamily: 'monospace', background: '#fff', padding: '2px 6px', borderRadius: '3px' }}>{fileName}</code>
             </div>
             <button
               onClick={() => {
@@ -220,7 +220,7 @@ export default function ProfileUpload() {
                 fontSize: '14px',
               }}
             >
-              ✕ Clear
+              Clear
             </button>
           </div>
         )}
@@ -236,7 +236,7 @@ export default function ProfileUpload() {
             marginBottom: '20px',
             fontSize: '14px',
           }}>
-            ❌ {uploadError}
+            {uploadError}
           </div>
         )}
 
@@ -251,7 +251,7 @@ export default function ProfileUpload() {
             marginBottom: '20px',
             fontSize: '14px',
           }}>
-            ✅ {uploadSuccess}
+            {uploadSuccess}
           </div>
         )}
 
@@ -266,7 +266,7 @@ export default function ProfileUpload() {
             textAlign: 'center',
           }}>
             <p style={{ color: '#666', fontSize: '13px', margin: '0 0 10px 0', fontWeight: '600' }}>
-              📍 File Location on Server:
+              File Location on Server:
             </p>
             <code style={{
               display: 'block',
@@ -296,7 +296,7 @@ export default function ProfileUpload() {
                 fontWeight: '600',
               }}
             >
-              🔗 View File
+              View File
             </a>
           </div>
         )}
@@ -318,7 +318,7 @@ export default function ProfileUpload() {
             transition: 'all 0.3s ease',
           }}
         >
-          {uploading ? '⏳ Uploading...' : '📤 Upload Profile Picture'}
+          {uploading ? 'Uploading...' : 'Upload Profile Picture'}
         </button>
       </div>
 
@@ -330,11 +330,11 @@ export default function ProfileUpload() {
         borderRadius: '8px',
         boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
       }}>
-        <h3 style={{ color: '#001f3f', fontSize: '16px', marginBottom: '15px' }}>ℹ️ Thông Tin Upload</h3>
+        <h3 style={{ color: '#001f3f', fontSize: '16px', marginBottom: '15px' }}>Thông Tin Upload</h3>
         
         <div style={{ marginBottom: '15px' }}>
           <p style={{ color: '#555', fontSize: '14px', margin: '0 0 8px 0' }}>
-            <strong>✅ Định dạng được hỗ trợ:</strong>
+            <strong>Định dạng được hỗ trợ:</strong>
           </p>
           <ul style={{ margin: '0', paddingLeft: '20px', color: '#666', fontSize: '13px' }}>
             <li>JPG / JPEG</li>
@@ -352,7 +352,7 @@ export default function ProfileUpload() {
           color: '#856404',
           lineHeight: '1.6',
         }}>
-          <strong>⚠️ File Upload Vulnerability Demo</strong>
+          <strong>File Upload Vulnerability Demo</strong>
           <p style={{ margin: '8px 0 0 0' }}>
             Endpoint này chỉ kiểm tra phần đuôi tên file, không kiểm tra nội dung thực. 
             Bạn có thể upload tên file <code style={{ fontFamily: 'monospace', background: '#fff8dc', padding: '2px 4px', borderRadius: '2px' }}>shell.php.jpg</code> 
@@ -363,7 +363,7 @@ export default function ProfileUpload() {
 
       {/* Security Warning */}
       <div style={{ marginTop: '30px', padding: '15px', background: '#fff3cd', border: '1px solid #ffc107', borderRadius: '4px', color: '#856404', fontSize: '13px' }}>
-        <strong>⚠️ Insecure File Upload Vulnerability Demo</strong>
+        <strong>Insecure File Upload Vulnerability Demo</strong>
         <p style={{ margin: '5px 0 0 0', lineHeight: '1.6' }}>
           Hệ thống này chỉ kiểm tra phần mở rộng tên file (.jpg, .png, .gif) nhưng <strong>không kiểm tra nội dung thực tế</strong> của file. 
           Bạn có thể:

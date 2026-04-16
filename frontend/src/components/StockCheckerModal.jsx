@@ -106,7 +106,7 @@ const StockCheckerModal = ({ product, onClose }) => {
           reorder_level: w.reorder_level
         }));
         setStockData(sampleData);
-        setError('⚠️ Using sample data - Backend unavailable');
+        setError(' Using sample data - Backend unavailable');
       }
     }
     setLoading(false);
@@ -123,7 +123,7 @@ const StockCheckerModal = ({ product, onClose }) => {
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-xl max-w-3xl w-full shadow-2xl max-h-[90vh] overflow-y-auto">
         <div className="flex items-start justify-between p-6 border-b sticky top-0 bg-white">
-          <h2 className="text-2xl font-bold text-gray-800">📊 Stock Checker</h2>
+          <h2 className="text-2xl font-bold text-gray-800"> Stock Checker</h2>
           <button
             onClick={onClose}
             className="text-gray-500 hover:text-gray-700 text-2xl"
@@ -189,7 +189,7 @@ const StockCheckerModal = ({ product, onClose }) => {
               disabled={loading}
               className="w-full px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition disabled:bg-gray-400"
             >
-              {loading ? '⏳ Checking...' : '🔍 Check Stock'}
+              {loading ? 'Checking...' : ' Check Stock'}
             </button>
           </div>
 
@@ -204,7 +204,7 @@ const StockCheckerModal = ({ product, onClose }) => {
           {/* Stock Data */}
           {stockData.length > 0 && (
             <div>
-              <h3 className="font-bold text-lg text-gray-800 mb-4">📦 Stock Information</h3>
+              <h3 className="font-bold text-lg text-gray-800 mb-4"> Stock Information</h3>
               <div className="overflow-x-auto">
                 <table className="w-full border-collapse">
                   <thead>

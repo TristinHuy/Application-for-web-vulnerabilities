@@ -269,7 +269,7 @@ Status: {{status}}`,
                 fontSize: '12px'
               }}
             >
-              ⬇️ Download Report
+              ⬇ Download Report
             </button>
           )}
         </div>
